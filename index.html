@@ -122,6 +122,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.85rem;
+            table-layout: fixed; /* 确保列宽比例生效 */
         }
         
         .stats-table th, 
@@ -129,6 +130,22 @@
             padding: 8px 10px;
             text-align: left;
             border: 1px solid #e8e8e8;
+        }
+
+        /* 设置列宽比例 */
+        .stats-table th:first-child,
+        .stats-table td:first-child {
+            width: 20%; /* 第一列宽度 */
+        }
+        
+        .stats-table th:nth-child(2),
+        .stats-table td:nth-child(2) {
+            width: 60%; /* 中间列宽度 */
+        }
+        
+        .stats-table th:last-child,
+        .stats-table td:last-child {
+            width: 20%; /* 最后一列宽度 */
         }
         
         .stats-table th {
@@ -147,7 +164,7 @@
         
         .highlight-number {
             font-weight: 600;
-            color: #2A6D7C;
+            color: #042932;
         }
         
         /* 摘要部分样式 */
@@ -211,6 +228,93 @@
             margin-top: 5px;
         }
         
+        /* 设置米色背景颜色变量 */
+        :root {
+            --cream-color: #f9f5f0;
+            --primary-color: #2A6D7C; /* 定义主题绿色 */
+        }
+        
+        /* 交替背景颜色设计 */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section:nth-child(odd) {
+            background-color: var(--cream-color);
+        }
+        
+        .section:nth-child(even) {
+            background-color: #ffffff;
+        }
+        
+        /* 去掉原来的灰色背景设置，用米色替代 */
+        .bg-light {
+            background-color: var(--cream-color) !important;
+        }
+        
+        /* 移除所有圆形图标背景 */
+        .achievement-icon, .plan-icon, .thanks-icon, .video-icon {
+            background-color: transparent !important;
+            color: #333 !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+        }
+        
+        .achievement-icon i, .plan-icon i, .thanks-icon i, .video-icon i, .footer-logo i {
+            color: #333 !important;
+        }
+        
+        .achievement-card:hover .achievement-icon,
+        .plan-item:hover .plan-icon,
+        .thanks-card:hover .thanks-icon,
+        .video-content:hover .video-icon {
+            background-color: transparent !important;
+        }
+        
+        /* 调整图标容器的尺寸和位置 */
+        .thanks-icon {
+            margin-right: 15px;
+        }
+        
+        /* 修改计划项目为水平布局 */
+        .future-plans {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .plan-item {
+            flex: 1;
+            min-width: 200px;
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 0;
+            text-align: center;
+        }
+        
+        .plan-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        /* 修改计划项目小标题颜色为绿色主题色 */
+        .plan-content h3 {
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+        
+        .plan-content p {
+            margin-bottom: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
         @media (max-width: 768px) {
             .daily-content-column {
                 margin-bottom: 15px;
@@ -227,6 +331,22 @@
             .stats-table th, 
             .stats-table td {
                 padding: 6px 8px;
+            }
+            
+            /* 移动端表格列宽调整 */
+            .stats-table th:first-child,
+            .stats-table td:first-child {
+                width: 22%; /* 移动端第一列稍微宽一点 */
+            }
+            
+            .stats-table th:nth-child(2),
+            .stats-table td:nth-child(2) {
+                width: 55%; /* 移动端中间列稍微窄一点 */
+            }
+            
+            .stats-table th:last-child,
+            .stats-table td:last-child {
+                width: 23%; /* 移动端最后一列稍微宽一点 */
             }
             
             .stat-number {
@@ -271,6 +391,62 @@
                 overflow-wrap: break-word;
                 white-space: normal;
             }
+
+            .future-plans {
+                flex-direction: column;
+            }
+            
+            .plan-item {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
+
+        /* 新的感谢卡片样式 */
+        .thanks-card {
+            background-color: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .thanks-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .thanks-card h4 {
+            color: #2A6D7C;
+            margin-bottom: 15px;
+            font-weight: 600;
+            border-bottom: 2px solid #f1f1f1;
+            padding-bottom: 10px;
+        }
+        
+        .thanks-card p {
+            margin-bottom: 0;
+            color: #555;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 30px;
+        }
+        
+        .signature-name {
+            font-size: 1.2rem;
+            font-family: "楷体", KaiTi, serif;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .signature-date {
+            font-size: 0.9rem;
+            color: #666;
         }
     </style>
 </head>
@@ -341,7 +517,7 @@
                         </div>
                         <p>本学习报告基于廖露露为期14天的致良知课程学习，简要展示了廖露露通过对阳明心学、观照能力、心道德事方法论、净心训练、悦纳概念等核心主题的学习与实践，依稀勾勒出从知到行、从困惑到领悟、从自责到接纳，如何通过观照训练提升自我觉察能力，如何通过净心训练面对并转化内心的八颗心，以及如何在"小我"中发现"大我"，最终找到人生使命与方向的成长旅程。</p>
                         <p>报告主体内容以四个学习阶段的形式呈现，从文化筑基到心学理论，从功夫训练到使命探寻。报告不仅是对个人学习历程的总结，也呈现了中国传统哲学思想中实修实证的特点，更是对中国传统文化智慧在当代语境下焕发新生的见证，对于寻求心灵成长、自我提升的读者具有一定的参考价值。</p>
-                        <div class=="summary-quote">
+                        <div class="summary-quote">
                             <i class="quote-icon bx bxs-quote-left"></i>
                             <p>"圣人之道，吾性自足。"</p>
                             <span class="quote-author">—— 阳明先生</span>
@@ -447,7 +623,7 @@
                                         <p class="daily-item"><small>1.1 《文化自信与民族复兴》2017企业家致良知雁栖湖论坛</small></p>
                                         <p class="daily-item"><small>1.2 《寻找温商的崇高感》 王振涛</small></p>
                                         <p class="daily-item"><small>1.3 《工匠精神 可爱而至》 傅胜龙 </small></p>
-                                        <p class="daily-item"><small>1.4 《初心圆满 人们对美满婚姻的向往 是我们奋斗的目标》 周琛</small></p>
+                                        <p class="daily-item"><small>1.4 《人们对美满婚姻的向往是我们奋斗的目标》周琛</small></p>
                                         <p class="daily-item"><small>1.5 《致良知+全球化战略 立志成就伟大企业》 靳保芳</small></p>
                                         <p class="daily-item"><small>1.6 《自信地走向伟大》 文东矛</small></p>
                                         <p class="daily-item"><small>1.7 《正人先正己 扶贫先扶心》 宋瑞</small></p>
@@ -460,8 +636,8 @@
                                         <p class="daily-item"><small>2.1 《正人先正己 扶贫先扶心》 宋瑞</small></p>
                                         <p class="daily-item"><small>2.2 《朝向伟大 哲学与战略》 徐少春</small></p>
                                         <p class="daily-item"><small>2.3 《生命价值 如何衡量》白老师</small></p>
-                                        <p class="daily-item"><small>2.4 净心-观照-《文化自信 民族复兴》</small></p>
-                                        <p class="daily-item"><small>2.5 "心-道-德-事" 内涵及奥秘</small></p>
+                                        <p class="daily-item"><small>2.4  净心-观照-《文化自信 民族复兴》</small></p>
+                                        <p class="daily-item"><small>2.5  "心-道-德-事" 内涵及奥秘</small></p>
                                     </div>
                                 </div>
                                 
@@ -505,9 +681,9 @@
                                     <div class="daily-items">
                                         <p class="daily-item"><small>6.1 《学习阳明心学三句话，穿透长板》 白老师</small></p>
                                         <p class="daily-item"><small>6.2 《反求诸己》 慧云</small></p>
-                                        <p class="daily-item"><small>6.3 净心练习-洁欣</small></p>
+                                        <p class="daily-item"><small>6.3  净心练习-洁欣</small></p>
                                         <p class="daily-item"><small>6.4 《告谕浰头巢贼》原文会读</small></p>
-                                        <p class="daily-item"><small>6.5 爱的净心-雅琼</small></p>
+                                        <p class="daily-item"><small>6.5  爱的净心-雅琼</small></p>
                                     </div>
                                 </div>
                                 
@@ -515,9 +691,9 @@
                                     <h4>Day 07</h4>
                                     <div class="daily-items">
                                         <p class="daily-item"><small>7.1 《悦纳》 顺华老师</small></p>
-                                        <p class="daily-item"><small>7.2 八颗心练习 傲心-洁欣</small></p>
+                                        <p class="daily-item"><small>7.2  八颗心练习 傲心-洁欣</small></p>
                                         <p class="daily-item"><small>7.3 《四部曲》 顺华老师</small></p>
-                                        <p class="daily-item"><small>7.4 八颗心练习 忿心-雅琼</small></p>
+                                        <p class="daily-item"><small>7.4  八颗心练习 忿心-雅琼</small></p>
                                         <p class="daily-item"><small>7.5 《阳明心学第十二集-异业同道》</small></p>
                                     </div>
                                 </div>
@@ -525,11 +701,11 @@
                                 <div class="daily-day">
                                     <h4>Day 08</h4>
                                     <div class="daily-items">
-                                        <p class="daily-item"><small>8.1 阳明先生年谱原文</small></p>
-                                        <p class="daily-item"><small>8.2 国家安全教育日活动直播</small></p>
+                                        <p class="daily-item"><small>8.1  阳明先生年谱原文</small></p>
+                                        <p class="daily-item"><small>8.2  国家安全教育日活动直播</small></p>
                                         <p class="daily-item"><small>8.3 《知行合一》 洁欣</small></p>
                                         <p class="daily-item"><small>8.4 《良知一提便醒》 顺华老师</small></p>
-                                        <p class="daily-item"><small>8.5 八颗心练习 妒心-雅琼</small></p>
+                                        <p class="daily-item"><small>8.5  八颗心练习 妒心-雅琼</small></p>
                                     </div>
                                 </div>
                             </div>
@@ -541,8 +717,8 @@
                                     <h4>Day 09</h4>
                                     <div class="daily-items">
                                         <p class="daily-item"><small>9.1 《汉唐飞扬 德交归焉》（道德经 白老师）</small></p>
-                                        <p class="daily-item"><small>9.2 橐龠明心 顺华老师</small></p>
-                                        <p class="daily-item"><small>9.3 我是多么不爱自己【思无邪】洁欣</small></p>
+                                        <p class="daily-item"><small>9.2  橐龠明心 顺华老师</small></p>
+                                        <p class="daily-item"><small>9.3  我是多么不爱自己【思无邪】洁欣</small></p>
                                         <p class="daily-item"><small>9.4 《81个人生答案-如何心上除累》宇佳</small></p>
                                         <p class="daily-item"><small>9.5 《善因善缘善果》章怡</small></p>
                                     </div>
@@ -553,19 +729,19 @@
                                     <div class="daily-items">
                                         <p class="daily-item"><small>10.1 《非凡的自信》顺华老师</small></p>
                                         <p class="daily-item"><small>10.2 《照亮人生-青年与战略十年》白老师</small></p>
-                                        <p class="daily-item"><small>10.3 寻找使命练习</small></p>
-                                        <p class="daily-item"><small>10.4 规划人生+战略十年制定</small></p>
+                                        <p class="daily-item"><small>10.3  寻找使命练习</small></p>
+                                        <p class="daily-item"><small>10.4  规划人生+战略十年制定</small></p>
                                     </div>
                                 </div>
                                 
                                 <div class="daily-day">
                                     <h4>Day 11-12</h4>
                                     <div class="daily-items">
-                                        <p class="daily-item"><small>11.1 寻找使命II</small></p>
-                                        <p class="daily-item"><small>11.2 宝藏篇章读书+宝藏五轮共创</small></p>
+                                        <p class="daily-item"><small>11.1  寻找使命II</small></p>
+                                        <p class="daily-item"><small>11.2  宝藏篇章读书+宝藏五轮共创</small></p>
                                         <p class="daily-item"><small>11.3 《种更好的因》顺华老师</small></p>
                                         <p class="daily-item"><small>12.1 《战略创新》白老师</small></p>
-                                        <p class="daily-item"><small>12.2 行为作用第二条，五轮共创</small></p>
+                                        <p class="daily-item"><small>12.2  行为作用第二条，五轮共创</small></p>
                                         <p class="daily-item"><small>12.3 《穿透，战略张力》雅琼</small></p>
                                     </div>
                                 </div>
@@ -575,11 +751,11 @@
                                     <div class="daily-items">
                                         <p class="daily-item"><small>13.1 《同理心》卓韵</small></p>
                                         <p class="daily-item"><small>13.2 《亲情无价净心》顺华老师</small></p>
-                                        <p class="daily-item"><small>13.3 亲情净心交流-苏施</small></p>
-                                        <p class="daily-item"><small>14.1 《共创会体验》</small></p>
-                                        <p class="daily-item"><small>14.2 《战略十年升级》</small></p>
-                                        <p class="daily-item"><small>14.3 《寻找使命》</small></p>
-                                        <p class="daily-item"><small>14.4 《修行实证总结》</small></p>
+                                        <p class="daily-item"><small>13.3  亲情净心交流-苏施</small></p>
+                                        <p class="daily-item"><small>14.1 《客户思维》顾老师</small></p>
+                                        <p class="daily-item"><small>14.2 《寻乌调查》毛主席</small></p>
+                                        <p class="daily-item"><small>14.3 《良知无尽》慧云</small></p>
+                                        <p class="daily-item"><small>14.4 《高质量学习报告》</small></p>
                                     </div>
                                 </div>
                             </div>
@@ -598,7 +774,7 @@
             <!-- 第一阶段 -->
             <div class="learning-stage" data-aos="fade-up" data-aos-delay="200">
                 <div class="stage-header" role="button" tabindex="0">
-                    <h3>第一阶段：文化筑基（Day1-2）<span class="stage-subtitle">文化觉醒与观照初探</span></h3>
+                    <h3>第一阶段：文化筑基 Day1-2<span class="stage-subtitle">文化觉醒与观照初探</span></h3>
                     <span class="toggle-icon">-</span>
                 </div>
                 <div class="stage-content" style="display: block;">
@@ -624,7 +800,7 @@
             <!-- 第二阶段 -->
             <div class="learning-stage" data-aos="fade-up" data-aos-delay="300">
                 <div class="stage-header" role="button" tabindex="0">
-                    <h3>第二阶段：心学理论（Day3-5）<span class="stage-subtitle">心学体系建立与顿悟突破</span></h3>
+                    <h3>第二阶段：心学理论 Day3-5<span class="stage-subtitle">心学体系建立与顿悟突破</span></h3>
                     <span class="toggle-icon">-</span>
                 </div>
                 <div class="stage-content" style="display: block;">
@@ -666,7 +842,7 @@
             <!-- 第三阶段 -->
             <div class="learning-stage" data-aos="fade-up" data-aos-delay="400">
                 <div class="stage-header" role="button" tabindex="0">
-                    <h3>第三阶段：功夫训练（Day6-10）<span class="stage-subtitle">明心共创与净心训练</span></h3>
+                    <h3>第三阶段：功夫训练 Day6-10<span class="stage-subtitle">明心共创与净心训练</span></h3>
                     <span class="toggle-icon">-</span>
                 </div>
                 <div class="stage-content" style="display: block;">
@@ -708,7 +884,7 @@
             <!-- 第四阶段 -->
             <div class="learning-stage" data-aos="fade-up" data-aos-delay="500">
                 <div class="stage-header" role="button" tabindex="0">
-                    <h3>第四阶段：使命探寻（Day11-14）<span class="stage-subtitle">人生使命与战略升级</span></h3>
+                    <h3>第四阶段：使命探寻 Day11-14<span class="stage-subtitle">人生使命与战略升级</span></h3>
                     <span class="toggle-icon">-</span>
                 </div>
                 <div class="stage-content" style="display: block;">
@@ -744,12 +920,9 @@
             <div class="row">
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
                     <div class="achievement-card">
-                        <div class="achievement-icon">
-                            <i class='bx bx-bulb'></i>
-                        </div>
                         <h3>体证时刻</h3>
                         <p>三周时间，收获了几十上百个体悟时刻，然后当我意识到体证的那一刻，是我最愉悦的瞬间。</p>
-                        <p>体证时刻分享：曾经我在路边看到有电动车倒地，我只是心中在想，我需要扶起来，因为...</p>
+                        <p>体证时刻分享：曾经我在路边看到有电动车倒地，纠结要不要扶起来时，时常人就走远了，但前几天同样情况，我走出十米开外，最后回头跑过去扶起来……</p>
                         <div class="card-footer">
                             <span class="badge-count">50+</span>
                             <span class="badge-label">体悟时刻</span>
@@ -758,9 +931,6 @@
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
                     <div class="achievement-card">
-                        <div class="achievement-icon">
-                            <i class='bx bx-rocket'></i>
-                        </div>
                         <h3>能力沉淀</h3>
                         <div class="ability-tags">
                             <span class="ability-tag"><i class='bx bx-search-alt'></i> 观照</span>
@@ -770,7 +940,7 @@
                             <span class="ability-tag"><i class='bx bx-face'></i>明心</span>
                             <span class="ability-tag"><i class='bx bx-face'></i> 同理心</span>
                         </div>
-                        <p class="mt-3">这些能力已经逐渐融入日常生活中，成为解决问题的新思路和方法，也是个人成长的加速器。</p>
+                        <p class="mt-3">这些能力已经逐渐融入日常生活工作中，成为问题突破的新思路和方法，也是我个人成长的加速器，尤其是在当下环境，悦纳能力，恐怕是最具有竞争力的核心能力。</p>
                         <div class="card-footer">
                             <span class="badge-count">5+</span>
                             <span class="badge-label">核心能力</span>
@@ -779,11 +949,8 @@
                 </div>
                 <div class="col-md-4" data-aos="fade-up" data-aos-delay="400">
                     <div class="achievement-card">
-                        <div class="achievement-icon">
-                            <i class='bx bx-crown'></i>
-                        </div>
                         <h3>哲学自信</h3>
-                        <p>过去学习了解过不少中外哲学史，西方心理学甚至宗教等内容，但从来没有如此近距离深度学习过中国哲学，尤其是阳明心学，当真正走进的那一刻，才明白圣贤何为圣贤，中国文化为何自信，因为中国哲学自信。</p>
+                        <p>过去学习了解过中外哲学，西方心理学甚至宗教等内容，但从来没有如此近距离深度学习过中国哲学，尤其是阳明心学，当真正走进的那一刻，才明白圣贤为何圣贤，中国文化为何自信，因为中国哲学自信，实修实证的中国哲学指出了明路。</p>
                         <div class="card-footer">
                             <span class="badge-count">∞</span>
                             <span class="badge-label">无限可能</span>
@@ -800,77 +967,27 @@
             <h2 class="section-title" data-aos="fade-up">展望计划</h2>
             <div class="future-plans" data-aos="fade-up" data-aos-delay="200">
                 <div class="plan-item">
-                    <div class="plan-icon">
-                        <i class='bx bx-laptop'></i>
-                    </div>
                     <div class="plan-content">
                         <h3>实战训练</h3>
                         <p>在小微大道的项目中，以行促知，以练代学</p>
-                       
                     </div>
                 </div>
                 <div class="plan-item">
-                    <div class="plan-icon">
-                        <i class='bx bx-time'></i>
-                    </div>
                     <div class="plan-content">
                         <h3>精进功夫</h3>
                         <p>文化自信诵读、时时观省、净心训练、伙伴共创</p>
-                       
                     </div>
                 </div>
                 <div class="plan-item">
-                    <div class="plan-icon">
-                        <i class='bx bx-book-open'></i>
-                    </div>
                     <div class="plan-content">
                         <h3>课程学习</h3>
                         <p>《阳明心学》《道德经》课程，线下战略共创会</p>
-                       
                     </div>
                 </div>
                 <div class="plan-item">
-                    <div class="plan-icon">
-                        <i class='bx bx-line-chart'></i>
-                    </div>
                     <div class="plan-content">
                         <h3>十年战略</h3>
-                        <p>战略十年的持续升级</p>
-                       
-                    </div>
-                </div>
-            </div>
-            
-            <div class="future-roadmap" data-aos="fade-up" data-aos-delay="400">
-                <h3 class="roadmap-title">成长路线图</h3>
-                <div class="roadmap">
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-content">
-                            <h4>阶段一：基础夯实</h4>
-                            <p>完成阳明心学和道德经系统学习</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-content">
-                            <h4>阶段二：能力提升</h4>
-                            <p>观照与净心能力达到自主运用阶段</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-content">
-                            <h4>阶段三：实践应用</h4>
-                            <p>将心学应用于工作与生活</p>
-                        </div>
-                    </div>
-                    <div class="roadmap-item">
-                        <div class="roadmap-dot"></div>
-                        <div class="roadmap-content">
-                            <h4>阶段四：战略升级</h4>
-                            <p>形成个人战略十年规划</p>
-                        </div>
+                        <p>持续完成人生使命的升级和战略十年的升级</p>
                     </div>
                 </div>
             </div>
@@ -884,34 +1001,24 @@
             <div class="acknowledgements-content" data-aos="fade-up" data-aos-delay="200">
                 <div class="thanks-cards">
                     <div class="thanks-card">
-                        <div class="thanks-icon">
-                            <i class='bx bx-group'></i>
-                        </div>
-                        <p>由衷感谢洁欣、雅琼和悦迪，从我进入润泽园第一天开始，为我制定每一天的学习计划。</p>
+                        <h4>伙伴引路</h4>
+                        <p>由衷感谢​​洁欣、雅琼、悦迪​​，为我量身定制学习计划并每日交流解惑，带给我润泽园最好的初印象以及基本功训练。</p>
                     </div>
                     <div class="thanks-card">
-                        <div class="thanks-icon">
-                            <i class='bx bx-building-house'></i>
-                        </div>
-                        <p>由衷感谢润泽园和部门伙伴，百忙之中利用时间和我们进行共创，帮助我们快速成长，给我指点。</p>
+                        <h4>团队共创</h4>
+                        <p>感恩​​润泽园与部门伙伴​​的托举之力，在项目攻坚的间隙，仍抽出宝贵时间与我们深度共创，一轮又一轮。</p>
                     </div>
                     <div class="thanks-card">
-                        <div class="thanks-icon">
-                            <i class='bx bx-user-voice'></i>
-                        </div>
-                        <p>由衷感谢源浩，优秀的学习搭档，在目前短暂的学习旅程中，可以相互支持、相互成长。</p>
+                        <h4>同窗支持</h4>
+                        <p>特别致谢​​源浩​​，最合拍的学习搭档。无论是晨起诵读，还是面对"八颗心"自省时的坦诚剖析，让学习多了许多温度。</p>
                     </div>
                     <div class="thanks-card">
-                        <div class="thanks-icon">
-                            <i class='bx bx-body'></i>
-                        </div>
-                        <p>真诚感谢自己，一直以来的不放弃和勇敢追逐梦想，让我有机会站在这里学习和分享。</p>
+                        <h4>自我点赞</h4>
+                        <p>谨以最大的认可献给​​不曾放弃的自己​​，无论经历了什么，都不侧畏惧过倒下过，才有机会站在这里学习交流。</p>
                     </div>
                     <div class="thanks-card">
-                        <div class="thanks-icon">
-                            <i class='bx bx-star'></i>
-                        </div>
-                        <p>由衷感谢白老师和润泽园，在我追逐梦想的路上，出现了，遇见已经就是我最大的幸运，能够有机会同行更是我的幸福。</p>
+                        <h4>命运馈赠</h4>
+                        <p>最后，向​​白老师与润泽园​​深深致敬。人生至幸，莫过于在追寻光明的路上，遇见引路人，有机会同行更是幸福至极。</p>
                     </div>
                 </div>
             </div>
@@ -926,19 +1033,16 @@
                 <div class="row">
                     <div class="col-lg-8 offset-lg-2">
                         <div class="video-text">
-                            <div class="video-icon">
-                                <i class='bx bx-book-heart'></i>
-                            </div>
                             <blockquote class="highlight-quote">
                                 真理不在远方，而在心中。
                             </blockquote>
                             <p>这段三周的学习之旅，像一场心灵的觉醒仪式，让我触摸到中华文化最深邃的力量。当企业家高唱"做新时代无畏战士"时，我第一次感受到商业与信仰的共振；当阳明先生"龙场悟道"的顿悟穿透时空击中我，我才明白：真理不在远方，而在心中。</p>
                             <p>明心与净心是修炼的基石。初学观照时，工科思维的惯性让我陷入逻辑死胡同，直到明白"用心而非用脑"的真谛——捕捉起心动念的数量，方能量化进步。而净心练习中，八颗心（傲、妒、贪等）的层层剖析，让我直面"小我"，却在悦纳中发现了"大我"的金子：傲心背后是志存高远，忿心深处藏有正义之火。每一次净心，都是对习性的斩棘，对心灵的解放。</p>
                             <p>知行合一是生命的升华。白老师的哲学之问点醒我：中国哲学需实修实证，重大问题的答案在"万物一体"的格局中。从《阳明心学》到《道德经》，圣贤智慧让我惊叹，但唯有践行才能筑起"知"的堤坝。若只知不行，"知"终将被欲望的浪潮冲垮。</p>
-                            <p>人生使命的探索是一场与自我的对话。从利己与利他的纠葛中，我最终确认："成为造福他人的慈善家"是心灵的召唤。立志与敢愿，需以"大我"为灯塔，而挫折不过是"金之在冶"——磨难是精神健身房，平庸才是真正的敌人。</p>
+                            <p>人生使命的探索是一场与自我的对话。从利己与利他的纠葛中，我最终确认："成为造福他人的慈善家"是心灵的召唤，去掉名利，那些让我热泪盈眶的仍是"帮助他人"。立志与敢愿，需以"大我"为灯塔，而挫折不过是"金之在冶"——磨难是精神健身房，平庸才是真正的敌人。</p>
                             <p>这段旅程让我明白：心灵品质决定人生高度。在橐龠场般的共修中，与他人的思维碰撞、与圣贤的隔空对话，都在推动我打破认知边界。未来，我将以更深的观照、更勇的践行，迈向致良知的境界——因为世界终将奖励那些为光明而战的人。</p>
                             <div class="signature">
-                                <img src="https://via.placeholder.com/150x80?text=签名" alt="廖露露签名" class="signature-img">
+                                <p class="signature-name">廖露露</p>
                                 <div class="signature-date">2025年4月18日</div>
                             </div>
                         </div>
@@ -954,7 +1058,6 @@
             <div class="row align-items-center">
                 <div class="col-md-4">
                     <div class="footer-logo">
-                        <i class='bx bx-book-heart'></i>
                         <span>致良知学习</span>
                     </div>
                     <p class="footer-desc">探索阳明心学，观照能力与净心训练</p>
@@ -1049,6 +1152,24 @@
                 if (!isMobile && dailyContentBody) {
                     dailyContentBody.style.maxHeight = dailyContentBody.classList.contains('collapsed') ? '0' : '3000px';
                 }
+            });
+            
+            // 修复移动端导航栏关闭问题
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            const navbarCollapse = document.querySelector('.navbar-collapse');
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            
+            // 当点击导航链接时关闭导航栏
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                        if (navbarToggler) {
+                            navbarToggler.setAttribute('aria-expanded', 'false');
+                            navbarToggler.classList.add('collapsed');
+                        }
+                    }
+                });
             });
         });
     </script>
