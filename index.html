@@ -448,6 +448,20 @@
             font-size: 0.9rem;
             color: #666;
         }
+
+        .click-hint {
+            font-size: 0.7rem;
+            color: #888;
+            font-weight: normal;
+            margin-left: 8px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .click-hint {
+                font-size: 0.65rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -610,6 +624,7 @@
                 <div class="daily-content-header" role="button" tabindex="0">
                     <h3 class="daily-content-title">
                         <i class='bx bx-calendar-check'></i> 每日学习内容清单
+                        <small class="click-hint">(点击可展开)</small>
                     </h3>
                     <span class="toggle-icon">+</span>
                 </div>
@@ -1051,32 +1066,30 @@
             </div>
         </div>
     </section>
-<!-- 复制以下代码，在index.html文件中找到">
 
-<!-- 视频展示部分 - B站视频（关闭自动播放和自动静音） -->
-<section id="video-showcase" class="section bg-light">
-    <div class="container">
-        <h2 class="section-title">心得视频分享</h2>
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="video-container">
-                    <!-- B站视频嵌入 - 禁用自动播放和自动静音 -->
-                    <div class="ratio ratio-16x9">
-                        <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114364761772549&bvid=BV1Jo54zFERF&cid=29503324251&p=1&high_quality=1&danmaku=0&autoplay=0&mute=0" 
-                                scrolling="no" 
-                                border="0" 
-                                frameborder="no" 
-                                framespacing="0" 
-                                allowfullscreen="true">
-                        </iframe>
+    <!-- 视频展示部分 - B站视频（关闭自动播放和自动静音） -->
+    <section id="video-showcase" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">心得视频分享</h2>
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="video-container">
+                        <!-- B站视频嵌入 - 禁用自动播放和自动静音 -->
+                        <div class="ratio ratio-16x9">
+                            <iframe src="https://player.bilibili.com/player.html?isOutside=true&aid=114364761772549&bvid=BV1Jo54zFERF&cid=29503324251&p=1&high_quality=1&danmaku=0&autoplay=0&mute=0" 
+                                    scrolling="no" 
+                                    border="0" 
+                                    frameborder="no" 
+                                    framespacing="0" 
+                                    allowfullscreen="true">
+                            </iframe>
+                        </div>
+                        <p class="text-center mt-3">阳明心学学习体悟与心得分享，记录我在致良知学习之旅中的成长与蜕变</p>
                     </div>
-                    <p class="text-center mt-3">阳明心学学习体悟与心得分享，记录我在致良知学习之旅中的成长与蜕变</p>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-
+    </section>
 
     <!-- 页脚 -->
     <footer class="footer">
